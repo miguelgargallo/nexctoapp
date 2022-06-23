@@ -7,6 +7,7 @@ interface TransferProps {
   title: string;
 }
 const Transfers = (props: TransferProps) => {
+  const projectAddress = "FLpXKSjzWkAWWtTzQgvaKZpjVbZBLYLSzEoVTbTNmaKm";
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -29,16 +30,23 @@ const Transfers = (props: TransferProps) => {
       <h1>{props.title} transfers</h1>
       {loading ? "Cargando..." : ""}
       <div>
-        {
-        props.title ==="User" ? notes.map((note, i) =>
-          note.commonType !== "mint" ? (
-            <Note title={props.title} key={note._id} noteInfo={note} />
-          ) : (
-            <></>
-          )
-        ) :
-        notes.filter(note => note.destOwnerAccount ==="FLpXKSjzWkAWWtTzQgvaKZpjVbZBLYLSzEoVTbTNmaKm")
-        }
+        {props.title === "User"
+          ? notes.map((note, i) =>
+              note.commonType !== "mint" ? (
+                <Note title={props.title} key={note._id} noteInfo={note} />
+              ) : (
+                <></>
+              )
+            )
+          : notes
+              .filter((note) => note.destOwnerAccount === projectAddress)
+              .map((note, i) =>
+                note.commonType !== "mint" ? (
+                  <Note title={props.title} key={note._id} noteInfo={note} />
+                ) : (
+                  <></>
+                )
+              )}
       </div>
     </div>
   );
