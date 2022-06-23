@@ -12,7 +12,7 @@ export const Note = ({ _id = [], txHash = [], amount = [] }) =>
           <p>{_id}</p>
           <p>{txHash}</p>
 
-          {/* {walletAddress === ourCoinWalletAddress ? "I received" : "I voted"} */}
+          {/* {walletAddress === ourCoinWalletAddress ? "I received" : "I voted"}  */}
           <p>{amount / 1000000000} Canar</p>
         </div>
       </li>

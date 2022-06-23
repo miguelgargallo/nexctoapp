@@ -18,12 +18,11 @@ export default function App() {
 
     axios
       .get(
-        `https://api.solscan.io/transfer/token?token_address=${tokenAddress}`
+        `https://api.solscan.io/transfer/token?token_address=6dmkrp3XjSGyd2kWQCnKtvaufBR4ov7ZDAsrWbGbYTbX`
       )
       .then((response) => {
         const { data } = response;
         console.log("hey data items", data.data.items);
-
         setNotes(data.data.items);
         setLoading(false);
       });
