@@ -8,12 +8,12 @@ export default function App() {
   const [newNote, setNewNote] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [tokenAddress, setTokenAddress] = useState("");
+  // const [tokenAddress, setTokenAddress] = useState("");
 
   useEffect(() => {
     console.log("useEffect");
     setLoading(true);
-    setTokenAddress("6dmkrp3XjSGyd2kWQCnKtvaufBR4ov7ZDAsrWbGbYTbX");
+    // setTokenAddress("6dmkrp3XjSGyd2kWQCnKtvaufBR4ov7ZDAsrWbGbYTbX");
     // setWalletAddress("FLpXKSjzWkAWWtTzQgvaKZpjVbZBLYLSzEoVTbTNmaKm");
 
     axios
