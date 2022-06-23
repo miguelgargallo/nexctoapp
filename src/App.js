@@ -8,14 +8,25 @@ export default function App() {
   const [newNote, setNewNote] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [tokenAddress, setTokenAddress] = useState("");
+
   useEffect(() => {
     console.log("useEffect");
     setLoading(true);
-    axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
-      const { data } = response;
-      setNotes(data);
-      setLoading(false);
-    });
+    setTokenAddress("6dmkrp3XjSGyd2kWQCnKtvaufBR4ov7ZDAsrWbGbYTbX");
+    // setWalletAddress("FLpXKSjzWkAWWtTzQgvaKZpjVbZBLYLSzEoVTbTNmaKm");
+
+    axios
+      .get(
+        `https://api.solscan.io/transfer/token?token_address=${tokenAddress}`
+      )
+      .then((response) => {
+        const { data } = response;
+        console.log("hey data items", data.data.items);
+
+        setNotes(data.data.items);
+        setLoading(false);
+      });
   }, []);
 
   const handleChange = (event) => {
@@ -41,12 +52,12 @@ export default function App() {
 
   return (
     <div>
-      <h1>Posts</h1>
+      <h1>Token transfers</h1>
       {loading ? "Cargando..." : ""}
       <li>
-        {notes.map((note) => (
-          <Note key={note.id} {...note} />
-        ))}
+        {notes.map((note) =>
+          note.commonType !== "mint" ? <Note key={note._id} {...note} /> : <></>
+        )}
       </li>
 
       <form onSubmit={handleSubmit}>
